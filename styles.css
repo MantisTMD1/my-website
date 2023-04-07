@@ -356,7 +356,7 @@ h1 {
   color: #fffdff;
   position: relative;
   text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
-    0.025em 0.04em 0 #fffc00;
+  0.025em 0.04em 0 #fffc00;
   animation: glitch 725ms infinite;
 }
 
@@ -428,4 +428,16 @@ h1 {
 
 .arrow-button__tech-sect:hover {
   cursor: pointer;
+}
+
+/*       project section        */
+.project-sect__container{
+  position: relative;
+  background-color: #0e161d;
+  padding-top: 24px;
+  height: 100vh;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
