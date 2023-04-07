@@ -431,13 +431,18 @@ h1 {
 }
 
 /*       project section        */
-.project-sect__container{
+#projects-sect__container{
   position: relative;
-  background-color: #0e161d;
+  background-color: #222;
   padding-top: 24px;
   height: 100vh;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+
+#projects-sect__container h2{
+text-align: center;
+
 }
