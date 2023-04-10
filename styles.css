@@ -172,12 +172,13 @@ h1 {
 
   background-size: 57%;
   background-repeat: repeat;
-
   -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
   animation: rainbow-text-animation-rev 0.5s ease forwards;
-
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .rainbow-text:hover {
@@ -271,9 +272,10 @@ h1 {
 }
 
 #about-me__container h2 {
+  font-family: 'Signika Negative', sans-serif;
   letter-spacing: 3px;
   color: #e16541;
-  font-family: "Lato", sans-serif;
+ 
   font-size: 54px;
   margin-left: 18px;
 }
@@ -293,7 +295,7 @@ h1 {
   margin-left: 18px;
   width: 65%;
   color: #f8f8f8;
-  font-family: "Mukta", sans-serif;
+  font-family: 'Signika Negative', sans-serif;
 }
 
 .arrow-button__about-me {
