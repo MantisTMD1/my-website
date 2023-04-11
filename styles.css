@@ -259,11 +259,12 @@ h1 {
 
 @media (max-width: 769px) {
   .social-icons i {
-    font-size: 18px;
+    font-size: 20px;
+    right:8px;
   }
 
   .vl {
-    height: 100px;
+    height: 120px;
   }
 }
 
