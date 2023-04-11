@@ -260,7 +260,7 @@ h1 {
 @media (max-width: 769px) {
   .social-icons i {
     font-size: 20px;
-    right:8px;
+    right: 8px;
   }
 
   .vl {
@@ -564,10 +564,10 @@ h1 {
 }
 
 #submit-button {
+  box-shadow: 0.5rem 0.5rem black;
   margin-top: 12px;
   font-size: 16px;
   border-radius: 16px;
-  box-shadow: 0.5rem 0.5rem black;
   font-family: "Work Sans", sans-serif;
   text-transform: capitalize;
   color: black;
@@ -604,10 +604,11 @@ input::placeholder {
   font-family: "Work Sans", sans-serif;
   text-transform: capitalize;
   color: black;
+  background-color: white;
   font-weight: bold;
 }
 
-#close:hover{
+#close:hover {
   transition: ease-in-out 0.3s;
   background-color: black;
   cursor: pointer;
@@ -628,7 +629,7 @@ input::placeholder {
     font-size: 26px;
   }
 
-  #close{
-  width: 50%;
+  #close {
+    width: 50%;
   }
 }
