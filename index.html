@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
+
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <script src="index.js"></script>
+
     <link rel="icon" href="./images//favicon.png" />
     <script src="https://kit.fontawesome.com/6013de8ce9.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8" />
@@ -52,7 +53,7 @@
         </ul>
     </div>
     <div class="title-text">
-        <h1 class="rainbow-text">Hello World! Welcome To My Portfolio
+        <h1 class="rainbow-text">Hi I'm Evan. Welcome To My Portfolio
         </h1>
     </div>
 
@@ -69,7 +70,7 @@
     </div>
 
     <div class="social-icons">
-        <a href="/" title="Contact form"> <i class="fa-solid fa-reply fa-spin"></i></a>
+        <Button id="contact_button" title="Contact form"> <i class="fa-solid fa-reply fa-spin"></i></Button>
         <a href="https://github.com/MantisTMD1" target="_blank" title="Github"> <i
                 class="fa-brands fa-github-alt"></i></a>
         <a href="https://www.linkedin.com/in/evan-st-martin-64307a8b/" target="_blank" title="Linkedin"> <i
@@ -78,6 +79,7 @@
                 aria-hidden="true"></i></a>
         <div class="vl"></div>
     </div>
+
 
     <div id="about-me__container">
         <h2 class="h2-title__line" About Me>About Me</h2>
@@ -109,13 +111,36 @@
                     class="fa-solid fa-arrow-down-long fa-bounce"></i></a>
         </div>
     </div>
-    <div id="tech-sect__container">
-        <h2 class="glitch">Contact Form</h2>
-        <div>
-            <a href="/" class="arrow-button__tech-sect" title="Go to next section"> <i
-                    class="fa-solid fa-arrow-up-long fa-bounce"></i></a>
+    <div class="modal-container" id="modal_container">
+
+        <div class="modal">
+          
+            <h3>Want to reach out?</h3>
+            <hr id = "thread2"/>
+            <p>Please fill out the form below</p>
+            <form class = "contact_form_modal">
+              
+                <label for="name">Name </label>
+
+                <input type="text" name="name" id="name" placeholder="John Wick" required>
+            
+                <label for="email">Email </label>
+                <input type="email" name="email" id="email" placeholder="johnwick@gmail.com" required>
+                <label for="message">Message </label>
+                <textarea placeholder="Write your message here...">
+
+                </textarea>
+                <input type="submit" id = "submit-button">
+                <button id="close">
+                    Close me
+                </button>
+           
+            </form>
+            <br>
+            
         </div>
     </div>
+    <script src="index.js"></script>
 </body>
 
 
