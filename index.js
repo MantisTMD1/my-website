@@ -1,15 +1,15 @@
-// navbar disappear on scroll
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function () {
-  var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("header").style.top = "0";
-  } else {
-    document.getElementById("header").style.top = "-160px";
-  }
+// // navbar disappear on scroll
+// var prevScrollpos = window.pageYOffset;
+// window.onscroll = function () {
+//   var currentScrollPos = window.pageYOffset;
+//   if (prevScrollpos > currentScrollPos) {
+//     document.getElementById("header").style.top = "0";
+//   } else {
+//     document.getElementById("header").style.top = "-160px";
+//   }
 
-  prevScrollpos = currentScrollPos;
-};
+//   prevScrollpos = currentScrollPos;
+// };
 
 // modal function
 const contact_button = document.getElementById("contact_button");
