@@ -497,9 +497,9 @@ h1 {
 }
 
 .modal h3 {
-  text-shadow: black 2px 5px;
+  text-shadow: black 2px 2px;
   font-family: "Chivo", sans-serif;
-  font-weight: bold;
+  font-weight:bolder;
   color: #38a093;
   font-size: 48px;
   margin: 0;
