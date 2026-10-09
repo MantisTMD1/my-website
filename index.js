@@ -49,6 +49,7 @@ const openModal = (event) => {
 
 contact_button.addEventListener("click", openModal);
 document.getElementById("nav_contact").addEventListener("click", openModal);
+document.getElementById("hero_contact").addEventListener("click", openModal);
 
 close.addEventListener("click", () => {
   modal_container.classList.remove("show");

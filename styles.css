@@ -220,6 +220,203 @@ a {
   padding: 120px 15px 80px;
   background-color: #222;
   text-align: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* faint grid that fades out toward the edges */
+.title-text::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+}
+
+/* soft lime glow behind the title */
+.title-text::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(900px, 120vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(222, 254, 71, 0.14) 0%, rgba(222, 254, 71, 0.04) 35%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* call-to-action buttons */
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #defe47;
+  outline-offset: 3px;
+}
+
+.btn--primary {
+  background: #defe47;
+  color: #111;
+  box-shadow: 0 0 0 rgba(222, 254, 71, 0);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 8px 28px rgba(222, 254, 71, 0.35);
+}
+
+.btn--ghost {
+  border: 1.5px solid rgba(248, 248, 248, 0.6);
+  color: #f8f8f8;
+}
+
+.btn--ghost:hover {
+  border-color: #defe47;
+  color: #defe47;
+}
+
+/* code editor window */
+.code-card {
+  display: none;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(14, 14, 14, 0.85);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(222, 254, 71, 0.06);
+  text-align: left;
+  overflow: hidden;
+}
+
+.code-card__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.code-card__bar span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.code-card__bar span:nth-child(2) {
+  background: #febc2e;
+}
+
+.code-card__bar span:nth-child(3) {
+  background: #28c840;
+}
+
+.code-card__bar p {
+  margin: 0 0 0 8px;
+  color: rgba(248, 248, 248, 0.5);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+}
+
+.code-card pre {
+  margin: 0;
+  padding: 22px 24px 26px;
+  color: #f8f8f8;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.tok-key { color: #fc79c4; }
+.tok-var { color: #00fffc; }
+.tok-prop { color: #f8f8f8; }
+.tok-str { color: #defe47; }
+
+.code-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  background: #defe47;
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* wide screens: text on the left, code window on the right
+   (extra right padding keeps the code window clear of the fixed social icons) */
+@media (min-width: 1200px) {
+  .hero-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 120px 0 48px;
+  }
+
+  .hero-copy {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-ctas {
+    justify-content: flex-start;
+  }
+
+  .code-card {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .title-text::after {
+    left: 30%;
+  }
 }
 
 .title-sub {
@@ -242,7 +439,7 @@ h1 {
   font-family: "Space Grotesk", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 6em;
+  font-size: clamp(3.5rem, 6.5vw, 6rem);
   line-height: 0.95em;
   margin: 0;
   color: #fffdff;
@@ -250,13 +447,117 @@ h1 {
     0.025em 0.04em 0 #fffc00;
 }
 
+/* glitch burst on load, and again on hover */
+.hero-title {
+  position: relative;
+  cursor: default;
+  animation: glitch 160ms steps(2) 4;
+}
+
+.hero-title::before,
+.hero-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  text-shadow: none;
+  pointer-events: none;
+}
+
+.hero-title::before {
+  color: #00fffc;
+  animation: glitch-slice-a 0.7s steps(1) 1;
+}
+
+.hero-title::after {
+  color: #fc00ff;
+  animation: glitch-slice-b 0.7s steps(1) 1;
+}
+
+.hero-title:hover {
+  animation: glitch-hover 160ms steps(2) 4;
+}
+
+.hero-title:hover::before {
+  animation: glitch-slice-a-hover 0.7s steps(1) 1;
+}
+
+.hero-title:hover::after {
+  animation: glitch-slice-b-hover 0.7s steps(1) 1;
+}
+
+@keyframes glitch-slice-a {
+  0% { opacity: 1; clip-path: inset(10% 0 70% 0); transform: translate(-6px, 0); }
+  20% { opacity: 1; clip-path: inset(55% 0 20% 0); transform: translate(6px, 0); }
+  40% { opacity: 1; clip-path: inset(30% 0 50% 0); transform: translate(-4px, 0); }
+  60% { opacity: 1; clip-path: inset(75% 0 5% 0); transform: translate(5px, 0); }
+  80% { opacity: 1; clip-path: inset(0 0 85% 0); transform: translate(-3px, 0); }
+  100% { opacity: 0; }
+}
+
+@keyframes glitch-slice-b {
+  0% { opacity: 1; clip-path: inset(65% 0 10% 0); transform: translate(6px, 0); }
+  20% { opacity: 1; clip-path: inset(15% 0 65% 0); transform: translate(-6px, 0); }
+  40% { opacity: 1; clip-path: inset(45% 0 35% 0); transform: translate(4px, 0); }
+  60% { opacity: 1; clip-path: inset(5% 0 80% 0); transform: translate(-5px, 0); }
+  80% { opacity: 1; clip-path: inset(85% 0 0 0); transform: translate(3px, 0); }
+  100% { opacity: 0; }
+}
+
+/* identical copies so the animation restarts on hover */
+@keyframes glitch-slice-a-hover {
+  0% { opacity: 1; clip-path: inset(10% 0 70% 0); transform: translate(-6px, 0); }
+  20% { opacity: 1; clip-path: inset(55% 0 20% 0); transform: translate(6px, 0); }
+  40% { opacity: 1; clip-path: inset(30% 0 50% 0); transform: translate(-4px, 0); }
+  60% { opacity: 1; clip-path: inset(75% 0 5% 0); transform: translate(5px, 0); }
+  80% { opacity: 1; clip-path: inset(0 0 85% 0); transform: translate(-3px, 0); }
+  100% { opacity: 0; }
+}
+
+@keyframes glitch-slice-b-hover {
+  0% { opacity: 1; clip-path: inset(65% 0 10% 0); transform: translate(6px, 0); }
+  20% { opacity: 1; clip-path: inset(15% 0 65% 0); transform: translate(-6px, 0); }
+  40% { opacity: 1; clip-path: inset(45% 0 35% 0); transform: translate(4px, 0); }
+  60% { opacity: 1; clip-path: inset(5% 0 80% 0); transform: translate(-5px, 0); }
+  80% { opacity: 1; clip-path: inset(85% 0 0 0); transform: translate(3px, 0); }
+  100% { opacity: 0; }
+}
+
+@keyframes glitch-hover {
+  0% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+  50% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff, 0 -0.04em 0 #fffc00; }
+  100% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title,
+  .hero-title:hover,
+  .hero-title::before,
+  .hero-title::after,
+  .hero-title:hover::before,
+  .hero-title:hover::after,
+  .code-cursor {
+    animation: none;
+  }
+}
+
 @media (max-width: 769px) {
   h1 {
-    font-size: 56px;
+    font-size: 52px;
   }
 
   .title-sub {
     font-size: 18px;
+  }
+
+  .hero-ctas {
+    margin-top: 24px;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
   }
 
   .arrow-button__hero {
@@ -308,8 +609,8 @@ h1 {
      instead of a fixed column that collides with the title and section text */
   .social-icons {
     position: absolute;
-    top: calc(100vh - 150px);
-    top: calc(100svh - 150px);
+    top: calc(100vh - 138px);
+    top: calc(100svh - 138px);
     bottom: auto;
     left: 0;
     right: 0;
