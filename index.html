@@ -28,8 +28,31 @@
         </ul>
     </div>
     <div class="title-text" id="home">
-        <h1>Hi I'm Evan.</h1>
-        <p class="title-sub">Welcome to my portfolio</p>
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <h1 class="hero-title" data-text="Hi I'm Evan.">Hi I'm Evan.</h1>
+                <p class="title-sub">Welcome to my portfolio</p>
+                <div class="hero-ctas">
+                    <a href="#projects-sect__container" class="btn btn--primary">View my work</a>
+                    <a href="#" class="btn btn--ghost" id="hero_contact">Get in touch</a>
+                </div>
+            </div>
+
+            <div class="code-card" aria-hidden="true">
+                <div class="code-card__bar">
+                    <span></span><span></span><span></span>
+                    <p>evan.js</p>
+                </div>
+<pre><code><span class="tok-key">const</span> <span class="tok-var">evan</span> = {
+  <span class="tok-prop">role</span>: <span class="tok-str">"Software Developer"</span>,
+  <span class="tok-prop">location</span>: <span class="tok-str">"Minneapolis, MN"</span>,
+  <span class="tok-prop">stack</span>: [<span class="tok-str">"React"</span>, <span class="tok-str">"Express"</span>,
+          <span class="tok-str">"Node.js"</span>, <span class="tok-str">"MongoDB"</span>],
+  <span class="tok-prop">loves</span>: <span class="tok-str">"building for the web"</span>,
+};<span class="code-cursor"></span></code></pre>
+            </div>
+        </div>
+
         <a href="#about-me__container" class="arrow-button__hero" title="Go to next section"> <i
                 class="fa-solid fa-arrow-down-long fa-bounce"></i></a>
     </div>
