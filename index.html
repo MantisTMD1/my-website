@@ -174,30 +174,29 @@
 
     <div class="modal-container" id="modal_container">
 
-        <div class="modal">
-          
-            <h3>Want to reach out?</h3>
-            <hr id="thread2" />
-            <p>Please fill out the form below</p>
-            <form class="contact_form_modal" id="contact_form">
-              
-                <label for="name">Name </label>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal_title">
+            <button type="button" id="close" aria-label="Close contact form">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
 
-                <input type="text" name="name" id="name" placeholder="John Wick" required>
-            
-                <label for="email">Email </label>
-                <input type="email" name="email" id="email" placeholder="johnwick@gmail.com" required>
-                <label for="message">Message </label>
+            <h3 id="modal_title">Want to reach out?</h3>
+            <hr id="thread2" />
+            <p class="modal__intro">Fill out the form below and I'll get back to you.</p>
+
+            <form class="contact_form_modal" id="contact_form">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="John Wick" autocomplete="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="johnwick@gmail.com" autocomplete="email"
+                    required>
+
+                <label for="message">Message</label>
                 <textarea name="message" id="message" placeholder="Write your message here..." required></textarea>
+
                 <input type="submit" id="submit-button" value="Send">
                 <p class="form-status" id="form_status" role="status" aria-live="polite"></p>
-                <button type="button" id="close">
-                    Close me
-                </button>
-           
             </form>
-            <br>
-            
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
