@@ -1099,6 +1099,59 @@ h1 {
   font-size: 14px;
 }
 
+/*        footer        */
+.site-footer {
+  position: relative;
+  background-color: #111;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px 24px;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.site-footer p {
+  margin: 0;
+  color: rgba(248, 248, 248, 0.6);
+  font-size: 14px;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.site-footer__links a {
+  color: rgba(248, 248, 248, 0.8);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.site-footer__links a:hover {
+  color: #defe47;
+}
+
+@media (max-width: 768px) {
+  .site-footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .site-footer__links {
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
 /*        modal css        */
 .modal-container {
   background-color: rgba(0, 0, 0, 0.2);
