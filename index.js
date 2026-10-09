@@ -11,6 +11,31 @@
 //   prevScrollpos = currentScrollPos;
 // };
 
+// mobile hamburger menu
+const navToggle = document.getElementById("nav_toggle");
+const headerEl = document.getElementById("header");
+
+const closeMenu = () => {
+  headerEl.classList.remove("menu-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", "Open menu");
+};
+
+navToggle.addEventListener("click", () => {
+  const open = headerEl.classList.toggle("menu-open");
+  navToggle.setAttribute("aria-expanded", String(open));
+  navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+});
+
+// close after picking a link, tapping outside, or pressing Escape
+document.querySelectorAll(".main-nav a").forEach((link) => link.addEventListener("click", closeMenu));
+document.addEventListener("click", (event) => {
+  if (!headerEl.contains(event.target)) closeMenu();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeMenu();
+});
+
 // modal function
 const contact_button = document.getElementById("contact_button");
 const close = document.getElementById("close");
@@ -18,6 +43,7 @@ const modal_container = document.getElementById("modal_container");
 
 const openModal = (event) => {
   event.preventDefault();
+  closeMenu();
   modal_container.classList.add("show");
 };
 
@@ -35,8 +61,7 @@ window.onclick = function (event) {
 };
 
 // navbar: darken once the page is scrolled
-const header = document.getElementById("header");
-const updateHeader = () => header.classList.toggle("scrolled", window.scrollY > 10);
+const updateHeader = () => headerEl.classList.toggle("scrolled", window.scrollY > 10);
 window.addEventListener("scroll", updateHeader, { passive: true });
 updateHeader();
 
