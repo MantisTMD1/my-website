@@ -28,7 +28,7 @@ navToggle.addEventListener("click", () => {
 });
 
 // close after picking a link, tapping outside, or pressing Escape
-document.querySelectorAll(".main-nav a").forEach((link) => link.addEventListener("click", closeMenu));
+document.querySelectorAll(".main-nav a, .nav-brand").forEach((link) => link.addEventListener("click", closeMenu));
 document.addEventListener("click", (event) => {
   if (!headerEl.contains(event.target)) closeMenu();
 });
