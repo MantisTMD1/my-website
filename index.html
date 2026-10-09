@@ -5,14 +5,14 @@
 
     <link rel="stylesheet" type="text/css" href="styles.css" />
 
-    <link rel="icon" href="./images//favicon.png" />
+    <link rel="icon" href="./images/favicon.png" />
     <script src="https://kit.fontawesome.com/6013de8ce9.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evan St Martin, Wedbdev</title>
-    <defs>
-        <style>
+    <title>Evan St Martin, Web Developer</title>
+    <meta name="description" content="Portfolio of Evan St Martin, a software developer based in Minneapolis, MN." />
+    <style>
             @keyframes rotate {
                 100% {
                     transform: rotate(360deg);
@@ -38,18 +38,17 @@
                 animation: rotate 15s linear infinite;
                 transform-origin: 84px 93px;
             }
-        </style>
-    </defs>
+    </style>
 </head>
 
 <body>
     <div id="header">
-        <img src="./images/evans-logo.png"></img>
+        <img src="./images/evans-logo.png" alt="WebDevEv logo" />
         <ul class="main-nav">
             <li><a href="#about-me__container">About</a></li>
             <li><a href="#tech-sect__container">Tech</a></li>
-            <li><a href="#home">Projects</a></li>
-            <li><a href="#home">Contact</a></li>
+            <li><a href="#projects-sect__container">Projects</a></li>
+            <li><a href="#" id="nav_contact">Contact</a></li>
         </ul>
     </div>
     <div class="title-text">
@@ -57,7 +56,7 @@
         </h1>
     </div>
 
-    <svg xlink:href="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">
+    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">
         <path fill="#05445E" class="out-top"
             d="M37-5C25.1-14.7,5.7-19.1-9.2-10-28.5,1.8-32.7,31.1-19.8,49c15.5,21.5,52.6,22,67.2,2.3C59.4,35,53.7,8.5,37-5Z" />
         <path fill="#189AB4" class="in-top"
@@ -67,13 +66,12 @@
         <path fill="#75E6DA" class="in-bottom"
             d="M102,67.1c-9.6-6.1-22-3.1-29.5,2-15.4,10.7-19.6,37.5-7.6,47.8s35.9,3.9,44.5-12.5C115.5,92.6,113.9,74.6,102,67.1Z" />
     </svg>
-    </div>
 
     <div class="social-icons">
-        <Button id="contact_button" title="Contact form"> <i class="fa-solid fa-reply fa-spin"></i></Button>
-        <a href="https://github.com/MantisTMD1" target="_blank" title="Github"> <i
+        <button type="button" id="contact_button" title="Contact form"> <i class="fa-solid fa-reply fa-spin"></i></button>
+        <a href="https://github.com/MantisTMD1" target="_blank" rel="noopener noreferrer" title="Github"> <i
                 class="fa-brands fa-github-alt"></i></a>
-        <a href="https://www.linkedin.com/in/evan-st-martin-64307a8b/" target="_blank" title="Linkedin"> <i
+        <a href="https://www.linkedin.com/in/evan-st-martin-64307a8b/" target="_blank" rel="noopener noreferrer" title="Linkedin"> <i
                 class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
         <a title="Email me directly" href="mailto:evanstmartin.dev@gmail.com"> <i class="fa-regular fa-envelope"
                 aria-hidden="true"></i></a>
@@ -82,7 +80,7 @@
 
 
     <div id="about-me__container">
-        <h2 class="h2-title__line" About Me>About Me</h2>
+        <h2 class="h2-title__line">About Me</h2>
         <hr />
         <p>
             I'm Evan, a software developer based in Minneapolis, MN.
@@ -100,14 +98,14 @@
     <div id="tech-sect__container">
         <h2 class="glitch">Technologies</h2>
         <div>
-            <a href="/" class="arrow-button__tech-sect" title="Go to next section"> <i
+            <a href="#projects-sect__container" class="arrow-button__tech-sect" title="Go to next section"> <i
                     class="fa-solid fa-arrow-down-long fa-bounce"></i></a>
         </div>
     </div>
     <div id="projects-sect__container">
         <h2 class="glitch">Projects</h2>
         <div>
-            <a href="/" class="arrow-button__tech-sect" title="Go to next section"> <i
+            <a href="#" class="arrow-button__tech-sect" title="Back to top"> <i
                     class="fa-solid fa-arrow-down-long fa-bounce"></i></a>
         </div>
     </div>
@@ -116,9 +114,11 @@
         <div class="modal">
           
             <h3>Want to reach out?</h3>
-            <hr id = "thread2"/>
+            <hr id="thread2" />
             <p>Please fill out the form below</p>
-            <form class = "contact_form_modal">
+            <form class="contact_form_modal" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact">
+                <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
               
                 <label for="name">Name </label>
 
@@ -127,11 +127,9 @@
                 <label for="email">Email </label>
                 <input type="email" name="email" id="email" placeholder="johnwick@gmail.com" required>
                 <label for="message">Message </label>
-                <textarea placeholder="Write your message here...">
-
-                </textarea>
-                <input type="submit" id = "submit-button">
-                <button id="close">
+                <textarea name="message" id="message" placeholder="Write your message here..." required></textarea>
+                <input type="submit" id="submit-button" value="Send">
+                <button type="button" id="close">
                     Close me
                 </button>
            

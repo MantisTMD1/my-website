@@ -16,9 +16,13 @@ const contact_button = document.getElementById("contact_button");
 const close = document.getElementById("close");
 const modal_container = document.getElementById("modal_container");
 
-contact_button.addEventListener("click", () => {
+const openModal = (event) => {
+  event.preventDefault();
   modal_container.classList.add("show");
-});
+};
+
+contact_button.addEventListener("click", openModal);
+document.getElementById("nav_contact").addEventListener("click", openModal);
 
 close.addEventListener("click", () => {
   modal_container.classList.remove("show");
