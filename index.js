@@ -1,3 +1,6 @@
+// lets CSS hide .reveal elements only when JS is running to show them again
+document.documentElement.classList.add("js");
+
 // // navbar disappear on scroll
 // var prevScrollpos = window.pageYOffset;
 // window.onscroll = function () {
@@ -50,6 +53,7 @@ const openModal = (event) => {
 contact_button.addEventListener("click", openModal);
 document.getElementById("nav_contact").addEventListener("click", openModal);
 document.getElementById("hero_contact").addEventListener("click", openModal);
+document.getElementById("about_contact").addEventListener("click", openModal);
 
 close.addEventListener("click", () => {
   modal_container.classList.remove("show");
@@ -133,3 +137,16 @@ const sectionObserver = new IntersectionObserver(
 
 // footer: keep the copyright year current
 document.getElementById("footer_year").textContent = new Date().getFullYear();
+
+// reveal elements as they scroll into view
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.15 }
+);
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
