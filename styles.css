@@ -35,10 +35,10 @@ a {
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 76px;
-  padding: 0 24px;
+  padding: 0 32px;
   background: rgba(20, 20, 20, 0.6);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -55,6 +55,96 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+/* initials badge, top left */
+.nav-brand {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1.5px solid #defe47;
+  border-radius: 12px;
+  color: #defe47;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.04rem;
+  transition: box-shadow 0.2s;
+}
+
+.nav-brand {
+  position: relative;
+}
+
+/* glitch on hover: shaking box, split-colour letters and sliced copies */
+.nav-brand::before,
+.nav-brand::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-brand::before {
+  color: #00fffc;
+}
+
+.nav-brand::after {
+  color: #fc00ff;
+}
+
+.nav-brand:hover {
+  box-shadow: 0 0 18px rgba(222, 254, 71, 0.4);
+  animation: brand-shake 0.4s steps(2) infinite, glitch 0.5s steps(2) infinite;
+}
+
+.nav-brand:hover::before {
+  animation: brand-slice-a 0.6s steps(1) infinite;
+}
+
+.nav-brand:hover::after {
+  animation: brand-slice-b 0.6s steps(1) infinite;
+}
+
+@keyframes brand-shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(1px, 1px); }
+}
+
+@keyframes brand-slice-a {
+  0% { opacity: 1; clip-path: inset(0 0 65% 0); transform: translate(-3px, 0); }
+  25% { opacity: 1; clip-path: inset(55% 0 20% 0); transform: translate(3px, 0); }
+  50% { opacity: 0; }
+  75% { opacity: 1; clip-path: inset(30% 0 45% 0); transform: translate(-2px, 0); }
+  100% { opacity: 0; }
+}
+
+@keyframes brand-slice-b {
+  0% { opacity: 0; }
+  25% { opacity: 1; clip-path: inset(70% 0 5% 0); transform: translate(3px, 0); }
+  50% { opacity: 1; clip-path: inset(10% 0 60% 0); transform: translate(-3px, 0); }
+  75% { opacity: 0; }
+  100% { opacity: 1; clip-path: inset(40% 0 35% 0); transform: translate(2px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-brand:hover,
+  .nav-brand:hover::before,
+  .nav-brand:hover::after {
+    animation: none;
+  }
+}
+
+.nav-brand:focus-visible {
+  outline: 2px solid #defe47;
+  outline-offset: 3px;
 }
 
 .main-nav a {
@@ -126,7 +216,13 @@ a {
   #header {
     height: 64px;
     padding: 0 16px;
-    justify-content: flex-end;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
   }
 
   .nav-toggle {
