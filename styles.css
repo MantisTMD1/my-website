@@ -55,6 +55,7 @@ a {
 
 #header {
   position: fixed;
+  z-index: 50;
   top: 0;
   transition: top 0.3s;
   padding-top: 0.5em;
@@ -86,7 +87,6 @@ a {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    z-index: 10;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
     background: rgba(0, 0, 0, 0.6);
@@ -222,41 +222,31 @@ h1 {
 #about-me__container {
   scroll-snap-align: start;
   position: relative;
-  background-color: #151f2c;
+  background-color: black;
   padding-top: 24px;
   height: 100vh;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-}
-
-#about-me__container h2 {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: #e16541;
-  font-size: 54px;
-  margin-left: 18px;
+  text-align: center;
 }
 
 #about-me__container hr {
-  margin-left: 18px;
-  width: 70%;
-  float: left;
+  width: 80px;
+  margin: 0 auto 24px;
   border: none;
-  height: 1px;
-  background-color: #f8f8f8;
+  height: 3px;
+  background-color: #defe47;
 }
 
 #about-me__container p {
-  font-size: 24px;
-  display: inline-block;
-  margin-left: 18px;
-  width: 65%;
+  max-width: 720px;
+  margin: 0 auto;
   color: #f8f8f8;
-  font-family: "Poppins", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  line-height: 1.5;
 }
 
 .arrow-button__about-me {
@@ -268,28 +258,12 @@ h1 {
   font-size: 48px;
 }
 
-.arrow-button__about-me :hover {
+.arrow-button__about-me:hover {
   cursor: pointer;
 }
 
 @media (max-width: 769px) {
-  #about-me__container h2 {
-    text-align: center;
-    margin-left: 0;
-  }
-
-  #about-me__container hr {
-    margin: auto;
-    width: 100%;
-  }
-
   #about-me__container p {
-    margin-left: 18px;
-    text-align: left;
-    letter-spacing: 0.03rem;
-    width: 90%;
-    padding-top: 4px;
-    width: none;
     font-size: 18px;
   }
 }
@@ -297,7 +271,7 @@ h1 {
 /*    tech section    */
 #tech-sect__container {
   position: relative;
-  background-color: black;
+  background-color: #222;
   padding-top: 24px;
   height: 100vh;
   padding-right: 15px;
@@ -401,7 +375,7 @@ h1 {
 /*       project section        */
 #projects-sect__container {
   position: relative;
-  background-color: #222;
+  background-color: black;
   padding-top: 24px;
   height: 100vh;
   padding-right: 15px;
