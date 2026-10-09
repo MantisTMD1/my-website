@@ -72,20 +72,42 @@
 
 
     <div id="about-me__container">
-        <h2 class="glitch">About Me</h2>
-        <hr />
-        <p>
-            I'm Evan, a software developer based in Minneapolis, MN.
-            I love building and designing websites and web applications. If you like what you see here or just want to
-            chat, send me a message.
-            Otherwise, check out some of my projects below!
-        </p>
+        <span class="about-watermark" aria-hidden="true">HELLO</span>
+
+        <div class="about-layout">
+            <figure class="about-photo reveal">
+                <img src="./images/Image.png" alt="Memoji of Evan peeking over a laptop" width="420" height="420"
+                    loading="lazy" />
+            </figure>
+
+            <div class="about-copy">
+                <h2 class="glitch reveal">About Me</h2>
+                <hr class="reveal" />
+                <p class="reveal">
+                    I'm Evan, a <span class="hl">software developer</span> based in <span class="hl">Minneapolis,
+                        MN</span>. I love <span class="hl">building and designing websites and web applications</span>.
+                    If you like what you see here or just want to chat, send me a message. Otherwise, check out some of
+                    my projects below!
+                </p>
+
+                <ul class="about-facts reveal">
+                    <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Minneapolis, MN</li>
+                    <li><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> Software Developer</li>
+                    <li><i class="fa-solid fa-layer-group" aria-hidden="true"></i> React + Node</li>
+                </ul>
+
+                <div class="about-ctas reveal">
+                    <a href="#" class="brutal-btn brutal-btn--primary" id="about_contact">Let's talk</a>
+                    <a href="#tech-sect__container" class="brutal-btn">See my stack</a>
+                </div>
+            </div>
+        </div>
+
         <div>
             <a href="#tech-sect__container" class="arrow-button__about-me" title="Go to next section"> <i
                     class="fa-solid fa-arrow-down-long fa-bounce"></i></a>
         </div>
     </div>
-
 
     <div id="tech-sect__container">
         <h2 class="glitch">Technologies</h2>

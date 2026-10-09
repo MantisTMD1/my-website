@@ -733,14 +733,83 @@ h1 {
 #about-me__container {
   scroll-snap-align: start;
   position: relative;
+  overflow: hidden;
   background-color: black;
-  padding-top: 64px;
-  height: 100vh;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 96px 24px 120px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* giant outlined word in the background */
+.about-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(120px, 26vw, 380px);
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(222, 254, 71, 0.09);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 1050px;
+}
+
+/* memoji in a tilted brutalist frame */
+.about-photo {
+  flex-shrink: 0;
+  width: min(300px, 70vw);
+  margin: 0;
+  padding: 14px;
+  border: 3px solid #defe47;
+  background: #151515;
+  box-shadow: 12px 12px 0 #f8f8f8;
+  transform: rotate(-3deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: radial-gradient(circle at 50% 60%, rgba(222, 254, 71, 0.25), transparent 70%);
+}
+
+.about-photo:hover {
+  transform: rotate(0deg) translate(-4px, -4px);
+  box-shadow: 16px 16px 0 #defe47;
+}
+
+.about-photo:hover img {
+  animation: memoji-bob 0.9s ease-in-out infinite;
+}
+
+@keyframes memoji-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.about-copy {
   text-align: center;
+}
+
+#about-me__container h2 {
+  margin-top: 0;
 }
 
 #about-me__container hr {
@@ -752,12 +821,167 @@ h1 {
 }
 
 #about-me__container p {
-  max-width: 720px;
+  max-width: 620px;
   margin: 0 auto;
   color: #f8f8f8;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 24px;
-  line-height: 1.5;
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+/* highlighter-style lime accents */
+.hl {
+  color: #111;
+  background: linear-gradient(transparent 12%, #defe47 12%, #defe47 88%, transparent 88%);
+  padding: 0 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font-weight: bold;
+}
+
+.about-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.about-facts li {
+  padding: 8px 14px;
+  border: 2px solid #f8f8f8;
+  background: #0a0a0a;
+  box-shadow: 4px 4px 0 #defe47;
+  color: #f8f8f8;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.about-facts i {
+  margin-right: 6px;
+  color: #defe47;
+}
+
+.about-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 32px;
+}
+
+/* brutalist buttons that press into their shadow */
+.brutal-btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 3px solid #f8f8f8;
+  background: #000;
+  color: #f8f8f8;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 0 #defe47;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.brutal-btn--primary {
+  border-color: #000;
+  background: #defe47;
+  color: #000;
+  box-shadow: 6px 6px 0 #f8f8f8;
+}
+
+.brutal-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #defe47;
+}
+
+.brutal-btn--primary:hover {
+  box-shadow: 3px 3px 0 #f8f8f8;
+}
+
+.brutal-btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: none;
+}
+
+.brutal-btn:focus-visible {
+  outline: 3px solid #defe47;
+  outline-offset: 4px;
+}
+
+/* slide in when the section scrolls into view (only once JS has marked the page) */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .about-photo.reveal {
+  transform: translateY(24px) rotate(-3deg);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js .about-photo.reveal.is-visible {
+  transform: rotate(-3deg);
+}
+
+.js .about-photo.reveal.is-visible:hover {
+  transform: rotate(0deg) translate(-4px, -4px);
+}
+
+.about-copy .reveal:nth-child(2) { transition-delay: 0.05s; }
+.about-copy .reveal:nth-child(3) { transition-delay: 0.1s; }
+.about-copy .reveal:nth-child(4) { transition-delay: 0.2s; }
+.about-copy .reveal:nth-child(5) { transition-delay: 0.3s; }
+
+@media (min-width: 900px) {
+  .about-layout {
+    flex-direction: row;
+    justify-content: center;
+    gap: 72px;
+  }
+
+  .about-copy {
+    text-align: left;
+  }
+
+  #about-me__container h2 {
+    text-align: left;
+  }
+
+  #about-me__container hr {
+    margin-left: 0;
+  }
+
+  #about-me__container p {
+    margin-left: 0;
+  }
+
+  .about-facts,
+  .about-ctas {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .about-photo.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .about-photo:hover img {
+    animation: none;
+  }
 }
 
 .arrow-button__about-me {
@@ -774,8 +998,21 @@ h1 {
 }
 
 @media (max-width: 769px) {
+  #about-me__container {
+    padding: 88px 16px 110px;
+  }
+
   #about-me__container p {
     font-size: 18px;
+  }
+
+  .about-facts li {
+    font-size: 14px;
+  }
+
+  .brutal-btn {
+    font-size: 14px;
+    padding: 11px 18px;
   }
 }
 
