@@ -33,3 +33,27 @@ window.onclick = function (event) {
     modal_container.classList.remove("show");
   }
 };
+
+// navbar: darken once the page is scrolled
+const header = document.getElementById("header");
+const updateHeader = () => header.classList.toggle("scrolled", window.scrollY > 10);
+window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader();
+
+// navbar: highlight the link for the section currently in view
+const navLinks = document.querySelectorAll('.main-nav a[href^="#"]:not(#nav_contact)');
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach((link) =>
+        link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`)
+      );
+    });
+  },
+  { rootMargin: "-50% 0px -50% 0px" }
+);
+["home", "about-me__container", "tech-sect__container", "projects-sect__container"].forEach((id) => {
+  const section = document.getElementById(id);
+  if (section) sectionObserver.observe(section);
+});

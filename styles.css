@@ -28,89 +28,118 @@ a {
   text-decoration: none;
 }
 
-.main-nav {
-  margin-top: 5px;
-}
-
-.main-nav a {
-  padding: 10px 15px;
-  text-transform: uppercase;
-  text-align: center;
-  display: block;
-  border: 1px solid transparent;
-  color: #f8f8f8;
-  font-size: 18px;
-  letter-spacing: 0.1rem;
-  font-family: "Lato", sans-serif;
-}
-
-.main-nav a:hover,
-.main-nav a:active,
-.main-nav a.active {
-  background: #61dbfb;
-  border-color: #292929;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
-  color: #292929;
-}
-
 #header {
   position: fixed;
   z-index: 50;
   top: 0;
-  transition: top 0.3s;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  background: rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.26);
-  -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.26);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 76px;
+  padding: 0 24px;
+  background: rgba(20, 20, 20, 0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-@media (min-width: 769px) {
-  #header,
-  .main-nav {
-    display: flex;
-  }
+#header.scrolled {
+  background: rgba(10, 10, 10, 0.85);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
 
-  #header {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 1150px;
-  }
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.main-nav a {
+  position: relative;
+  display: block;
+  padding: 10px 16px;
+  color: #f8f8f8;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+/* sliding underline */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 4px;
+  height: 2px;
+  background: #defe47;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #defe47;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+  transform: scaleX(1);
+}
+
+.main-nav a:focus-visible {
+  outline: 2px solid #defe47;
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+/* contact as a pill button */
+.main-nav #nav_contact {
+  margin-left: 8px;
+  border: 1.5px solid #defe47;
+  border-radius: 999px;
+  color: #defe47;
+}
+
+.main-nav #nav_contact::after {
+  display: none;
+}
+
+.main-nav #nav_contact:hover {
+  background: #defe47;
+  color: #111;
 }
 
 @media (max-width: 768px) {
   #header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-    background: rgba(0, 0, 0, 0.6);
+    height: 64px;
+    padding: 0 8px;
   }
 
   .main-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 0;
+    gap: 2px;
   }
 
   .main-nav a {
-    padding: 6px 10px;
+    padding: 8px 10px;
     font-size: 14px;
+    letter-spacing: 0.06rem;
   }
-}
 
-@media (min-width: 1025px) {
-  #header {
-    flex-direction: row;
-    justify-content: flex-end;
-    max-width: 100%;
-    padding-right: 18px;
+  .main-nav a::after {
+    left: 10px;
+    right: 10px;
+  }
+
+  .main-nav #nav_contact {
+    margin-left: 4px;
   }
 }
 
@@ -223,7 +252,7 @@ h1 {
   scroll-snap-align: start;
   position: relative;
   background-color: black;
-  padding-top: 24px;
+  padding-top: 64px;
   height: 100vh;
   padding-right: 15px;
   padding-left: 15px;
@@ -272,7 +301,7 @@ h1 {
 #tech-sect__container {
   position: relative;
   background-color: #222;
-  padding-top: 24px;
+  padding-top: 64px;
   height: 100vh;
   padding-right: 15px;
   padding-left: 15px;
@@ -376,7 +405,7 @@ h1 {
 #projects-sect__container {
   position: relative;
   background-color: black;
-  padding-top: 24px;
+  padding-top: 64px;
   height: 100vh;
   padding-right: 15px;
   padding-left: 15px;
