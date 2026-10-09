@@ -238,13 +238,32 @@ h1 {
 }
 
 @media (max-width: 769px) {
+  /* on phones, show the icons as a row on the landing screen (between the subtitle and arrow)
+     instead of a fixed column that collides with the title and section text */
+  .social-icons {
+    position: absolute;
+    top: calc(100vh - 150px);
+    top: calc(100svh - 150px);
+    bottom: auto;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    z-index: 5;
+  }
+
   .social-icons i {
-    font-size: 20px;
-    right: 8px;
+    font-size: 22px;
+  }
+
+  .social-icons i:hover {
+    transform: translateY(-4px);
   }
 
   .vl {
-    height: 120px;
+    display: none;
   }
 }
 
