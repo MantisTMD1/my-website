@@ -1019,7 +1019,9 @@ h1 {
 /*    tech section    */
 #tech-sect__container {
   position: relative;
-  background-color: #222;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #1c1c1c;
   padding-top: 64px;
   padding-bottom: 110px;
   min-height: 100vh;
@@ -1031,6 +1033,79 @@ h1 {
 
 #tech-sect__container h2 {
   text-align: center;
+}
+
+/* layered background: drifting glows, dot grid, vignette */
+.tech-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.tech-bg__glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: tech-drift 18s ease-in-out infinite alternate;
+}
+
+.tech-bg__glow--lime {
+  top: 8%;
+  left: -6%;
+  background: #defe47;
+  opacity: 0.18;
+}
+
+.tech-bg__glow--cyan {
+  right: -8%;
+  bottom: 4%;
+  background: #00fffc;
+  opacity: 0.14;
+  animation-duration: 22s;
+  animation-direction: alternate-reverse;
+}
+
+/* dot grid that fades out toward the edges */
+.tech-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%);
+}
+
+/* vignette pulls focus to the middle */
+.tech-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+@keyframes tech-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.1); }
+  100% { transform: translate(-30px, 80px) scale(0.95); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-bg__glow {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-bg__glow {
+    width: 320px;
+    height: 320px;
+    filter: blur(70px);
+  }
 }
 
 .tech-groups {
@@ -1069,7 +1144,10 @@ h1 {
   height: 112px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
-  background: #181818;
+  background: rgba(24, 24, 24, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1098,9 +1176,9 @@ h1 {
 
 /* light up in each tool's brand colour */
 .tech-tile:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: var(--brand);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .tech-tile:hover i {
