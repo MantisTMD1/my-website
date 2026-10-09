@@ -742,24 +742,6 @@ h1 {
   justify-content: center;
 }
 
-/* giant outlined word in the background */
-.about-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(120px, 26vw, 380px);
-  font-weight: bold;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(222, 254, 71, 0.09);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-}
-
 .about-layout {
   position: relative;
   display: flex;
@@ -1304,6 +1286,8 @@ h1 {
 /*       project section        */
 #projects-sect__container {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background-color: black;
   padding-top: 64px;
   padding-bottom: 64px;
@@ -1316,6 +1300,43 @@ h1 {
 
 #projects-sect__container h2 {
   text-align: center;
+}
+
+/* background: top glow and perspective grid floor */
+.projects-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(222, 254, 71, 0.12), transparent 70%);
+}
+
+.projects-bg__floor {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 55%;
+  background-image: linear-gradient(rgba(222, 254, 71, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(222, 254, 71, 0.28) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(500px) rotateX(62deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, black 10%, transparent 85%);
+  mask-image: linear-gradient(to top, black 10%, transparent 85%);
+  animation: grid-scroll 6s linear infinite;
+}
+
+/* grid slowly rolls toward the viewer */
+@keyframes grid-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 0 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-bg__floor {
+    animation: none;
+  }
 }
 
 .project-grid {
