@@ -130,3 +130,6 @@ const sectionObserver = new IntersectionObserver(
   const section = document.getElementById(id);
   if (section) sectionObserver.observe(section);
 });
+
+// footer: keep the copyright year current
+document.getElementById("footer_year").textContent = new Date().getFullYear();
