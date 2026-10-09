@@ -150,3 +150,33 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.15 }
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+// in-page links: scroll smoothly without adding #section to the URL
+document.addEventListener("click", (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link || event.defaultPrevented) return;
+
+  event.preventDefault();
+  const id = link.getAttribute("href").slice(1);
+  const target = id && id !== "home" ? document.getElementById(id) : null;
+
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+});
+
+// arriving with an old #section link still lands there, then the URL is cleaned up
+if (window.location.hash) {
+  const landing = document.getElementById(window.location.hash.slice(1));
+  history.replaceState(null, "", window.location.pathname + window.location.search);
+  if (landing) {
+    // jump once on load, then again after late fonts and images have shifted the layout
+    const jump = () => landing.scrollIntoView({ behavior: "instant" });
+    window.addEventListener("load", () => {
+      jump();
+      setTimeout(jump, 400);
+    });
+  }
+}
