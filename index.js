@@ -61,6 +61,53 @@ window.onclick = function (event) {
   }
 };
 
+// contact form: send through EmailJS (https://dashboard.emailjs.com)
+// These IDs are safe to publish; EmailJS restricts sending to your allowed domains.
+const EMAILJS_PUBLIC_KEY = "cA4H0KyRX1ynWGzRz";
+const EMAILJS_SERVICE_ID = "service_meiipo8";
+const EMAILJS_TEMPLATE_ID = "template_1992";
+
+const contactForm = document.getElementById("contact_form");
+const formStatus = document.getElementById("form_status");
+const submitButton = document.getElementById("submit-button");
+
+const setStatus = (message, type) => {
+  formStatus.textContent = message;
+  formStatus.className = `form-status ${type || ""}`;
+};
+
+if (window.emailjs && EMAILJS_PUBLIC_KEY) {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
+contactForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!window.emailjs || !EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+    setStatus("Sorry, the form isn't working right now. Please email me directly instead.", "error");
+    return;
+  }
+
+  submitButton.disabled = true;
+  submitButton.value = "Sending...";
+  setStatus("", "");
+
+  emailjs
+    .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
+    .then(() => {
+      contactForm.reset();
+      setStatus("Thanks for reaching out! I'll get back to you soon.", "success");
+    })
+    .catch((error) => {
+      console.error("EmailJS error:", error);
+      setStatus("Sorry, your message couldn't be sent. Please try again or email me directly.", "error");
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+      submitButton.value = "Send";
+    });
+});
+
 // navbar: darken once the page is scrolled
 const updateHeader = () => headerEl.classList.toggle("scrolled", window.scrollY > 10);
 window.addEventListener("scroll", updateHeader, { passive: true });

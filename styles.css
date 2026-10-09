@@ -924,6 +924,26 @@ h1 {
   border: none;
 }
 
+#submit-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.modal .form-status {
+  min-height: 1.25em;
+  margin: 8px 0 0;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.modal .form-status.success {
+  color: #0b5d1e;
+}
+
+.modal .form-status.error {
+  color: #8a0f0f;
+}
+
 #submit-button:hover {
   transition: ease-in-out 0.3s;
   background-color: black;
