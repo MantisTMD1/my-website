@@ -50,6 +50,27 @@ const openModal = (event) => {
   modal_container.classList.add("show");
 };
 
+// buttons that open the contact form with a message already written
+const contactPrefills = {
+  "beta-tester":
+    "Hi Evan, I'd like to beta test Recipe Rescue on iPhone. Please send a TestFlight invite to the email above.",
+};
+
+// if the form is closed without editing a pre-written message, clear it so the next open starts fresh
+const clearUnusedPrefill = () => {
+  const message = document.getElementById("message");
+  if (Object.values(contactPrefills).includes(message.value)) message.value = "";
+};
+
+document.querySelectorAll("[data-contact-prefill]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const message = document.getElementById("message");
+    message.value = contactPrefills[button.dataset.contactPrefill] || "";
+    openModal(event);
+    document.getElementById("name").focus();
+  });
+});
+
 contact_button.addEventListener("click", openModal);
 document.getElementById("nav_contact").addEventListener("click", openModal);
 document.getElementById("hero_contact").addEventListener("click", openModal);
@@ -57,11 +78,13 @@ document.getElementById("about_contact").addEventListener("click", openModal);
 
 close.addEventListener("click", () => {
   modal_container.classList.remove("show");
+  clearUnusedPrefill();
 });
 
 window.onclick = function (event) {
   if (event.target == modal_container) {
     modal_container.classList.remove("show");
+    clearUnusedPrefill();
   }
 };
 

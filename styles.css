@@ -1453,6 +1453,15 @@ h1 {
   line-height: 1.55;
 }
 
+.project-card .project-card__note {
+  margin-top: -6px;
+  padding: 10px 12px;
+  border-left: 3px solid #defe47;
+  background: rgba(222, 254, 71, 0.06);
+  color: #f8f8f8;
+  font-size: 15px;
+}
+
 .project-card__tags {
   display: flex;
   flex-wrap: wrap;
