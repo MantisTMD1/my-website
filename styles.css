@@ -1302,6 +1302,14 @@ h1 {
   text-align: center;
 }
 
+/* desktop: keep the cards clear of the fixed social icons on the right edge */
+@media (min-width: 770px) {
+  #projects-sect__container {
+    padding-left: 40px;
+    padding-right: 112px;
+  }
+}
+
 /* background: top glow and perspective grid floor */
 .projects-bg {
   position: absolute;
@@ -1341,9 +1349,9 @@ h1 {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 352px));
   justify-content: center;
-  gap: 28px;
+  gap: 24px;
   max-width: 1200px;
   margin: 24px auto 0;
 }
