@@ -2,17 +2,28 @@
 <html lang="en">
 
 <head>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-
-    <link rel="icon" href="./images/favicon.png" />
-    <script src="https://kit.fontawesome.com/6013de8ce9.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Evan St Martin, Web Developer</title>
     <meta name="description" content="Portfolio of Evan St Martin, a software developer based in Minneapolis, MN." />
+    <link rel="icon" href="./images/favicon.png" />
+
+    <!-- fonts: connect early and load only the one family the site uses -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" />
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <!-- tech icons sit below the fold, so load them without blocking the first paint -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print"
+        onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
+    </noscript>
+
+    <script src="https://kit.fontawesome.com/6013de8ce9.js" crossorigin="anonymous" defer></script>
 </head>
 
 <body>
@@ -29,6 +40,7 @@
             <li><a href="#" id="nav_contact">Contact</a></li>
         </ul>
     </div>
+    <main>
     <div class="title-text" id="home">
         <div class="hero-inner">
             <div class="hero-copy">
@@ -160,7 +172,7 @@
                     target="_blank" rel="noopener noreferrer" aria-label="Play May I in your browser">
                     <img src="./images/projects/may-i.jpg"
                         alt="May I game table: a green felt card table with three computer opponents, the stock and discard piles, and a freebie prompt for the player"
-                        width="1500" height="900" loading="lazy" />
+                        width="720" height="432" loading="lazy" />
                 </a>
                 <div class="project-card__body">
                     <h3>May I</h3>
@@ -192,7 +204,7 @@
                     aria-label="View the Recipe Rescue source code on GitHub">
                     <img src="./images/projects/recipe-rescue.jpg"
                         alt="Recipe Rescue app icon next to three iPhone screenshots: Recipe Ideas, Discover and a recipe detail"
-                        width="1500" height="900" loading="lazy" />
+                        width="720" height="432" loading="lazy" />
                 </a>
                 <div class="project-card__body">
                     <span class="project-card__badge">Beta</span>
@@ -227,7 +239,7 @@
                     aria-label="Open the Lakelife Integrative Health live site">
                     <img src="./images/projects/lakelife.jpg"
                         alt="Lakelife Integrative Health homepage: white logo and tagline over a calm lake, with Call us today and Explore services buttons"
-                        width="1500" height="900" loading="lazy" />
+                        width="720" height="432" loading="lazy" />
                 </a>
                 <div class="project-card__body">
                     <h3>Lakelife Integrative Health</h3>
@@ -284,7 +296,7 @@
                     target="_blank" rel="noopener noreferrer" aria-label="Open my first portfolio live site">
                     <img src="./images/projects/react-portfolio.jpg"
                         alt="My first portfolio: a WebDevEv logo, a dark hero with connected particles and an Express JS typing animation over a photo of a laptop"
-                        width="1500" height="900" loading="lazy" />
+                        width="720" height="432" loading="lazy" />
                 </a>
                 <div class="project-card__body">
                     <span class="project-card__badge">Throwback</span>
@@ -313,6 +325,8 @@
         </div>
 
     </div>
+    </main>
+
     <footer class="site-footer">
         <div class="site-footer__inner">
             <p>&copy; <span id="footer_year">2026</span> Evan St Martin</p>
