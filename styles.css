@@ -312,36 +312,40 @@ a {
   width: 100%;
   min-height: 100vh;
   padding: 120px 15px 80px;
-  background-color: #222;
+  background-color: #161815;
   text-align: center;
   overflow: hidden;
   isolation: isolate;
 }
 
-/* faint grid that fades out toward the edges */
+/* retro CRT: horizontal scanlines over a fine film grain */
 .title-text::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-  mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+  background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.32) 0,
+      rgba(0, 0, 0, 0.32) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: auto, 180px 180px;
+  opacity: 0.85;
+  pointer-events: none;
 }
 
-/* soft lime glow behind the title */
+/* CRT glass: faint lime phosphor glow behind the title and dark, rounded-off edges */
 .title-text::after {
   content: "";
   position: absolute;
+  inset: 0;
   z-index: -1;
-  top: 50%;
-  left: 50%;
-  width: min(900px, 120vw);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(222, 254, 71, 0.14) 0%, rgba(222, 254, 71, 0.04) 35%, transparent 65%);
+  background: radial-gradient(ellipse 55% 45% at 50% 48%, rgba(222, 254, 71, 0.09), transparent 70%),
+    radial-gradient(ellipse 110% 95% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.75) 100%);
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.8);
   pointer-events: none;
 }
 
@@ -508,9 +512,6 @@ a {
     flex-shrink: 0;
   }
 
-  .title-text::after {
-    left: 30%;
-  }
 }
 
 .title-sub {
@@ -732,12 +733,24 @@ h1 {
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   background-color: black;
   padding: 96px 24px 120px;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* soft ambient light behind the photo and copy */
+#about-me__container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 45% 55% at 28% 50%, rgba(222, 254, 71, 0.1), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 78% 60%, rgba(0, 255, 252, 0.06), transparent 70%);
+  pointer-events: none;
 }
 
 .about-layout {
@@ -750,29 +763,33 @@ h1 {
   max-width: 1050px;
 }
 
-/* memoji in a tilted brutalist frame */
+/* memoji in a rounded, softly glowing card */
 .about-photo {
   flex-shrink: 0;
   width: min(300px, 70vw);
   margin: 0;
   padding: 14px;
-  border: 3px solid #defe47;
-  background: #151515;
-  box-shadow: 12px 12px 0 #f8f8f8;
-  transform: rotate(-3deg);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(222, 254, 71, 0.3);
+  border-radius: 28px;
+  background: rgba(24, 24, 24, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 50px rgba(222, 254, 71, 0.14);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .about-photo img {
   display: block;
   width: 100%;
   height: auto;
-  background: radial-gradient(circle at 50% 60%, rgba(222, 254, 71, 0.25), transparent 70%);
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 60%, rgba(222, 254, 71, 0.22), transparent 70%);
 }
 
 .about-photo:hover {
-  transform: rotate(0deg) translate(-4px, -4px);
-  box-shadow: 16px 16px 0 #defe47;
+  transform: translateY(-6px);
+  border-color: rgba(222, 254, 71, 0.55);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 70px rgba(222, 254, 71, 0.24);
 }
 
 .about-photo:hover img {
@@ -797,7 +814,9 @@ h1 {
   margin: 0 auto 24px;
   border: none;
   height: 3px;
+  border-radius: 999px;
   background-color: #defe47;
+  box-shadow: 0 0 14px rgba(222, 254, 71, 0.6);
 }
 
 #about-me__container p {
@@ -809,14 +828,11 @@ h1 {
   line-height: 1.6;
 }
 
-/* highlighter-style lime accents */
+/* glowing lime accents */
 .hl {
-  color: #111;
-  background: linear-gradient(transparent 12%, #defe47 12%, #defe47 88%, transparent 88%);
-  padding: 0 4px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  color: #defe47;
   font-weight: bold;
+  text-shadow: 0 0 18px rgba(222, 254, 71, 0.45);
 }
 
 .about-facts {
@@ -828,14 +844,16 @@ h1 {
 }
 
 .about-facts li {
-  padding: 8px 14px;
-  border: 2px solid #f8f8f8;
-  background: #0a0a0a;
-  box-shadow: 4px 4px 0 #defe47;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   color: #f8f8f8;
   font-family: "Space Grotesk", sans-serif;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .about-facts i {
@@ -851,48 +869,6 @@ h1 {
   margin-top: 32px;
 }
 
-/* brutalist buttons that press into their shadow */
-.brutal-btn {
-  display: inline-block;
-  padding: 12px 22px;
-  border: 3px solid #f8f8f8;
-  background: #000;
-  color: #f8f8f8;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 0.08rem;
-  text-transform: uppercase;
-  box-shadow: 6px 6px 0 #defe47;
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-
-.brutal-btn--primary {
-  border-color: #000;
-  background: #defe47;
-  color: #000;
-  box-shadow: 6px 6px 0 #f8f8f8;
-}
-
-.brutal-btn:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0 #defe47;
-}
-
-.brutal-btn--primary:hover {
-  box-shadow: 3px 3px 0 #f8f8f8;
-}
-
-.brutal-btn:active {
-  transform: translate(6px, 6px);
-  box-shadow: none;
-}
-
-.brutal-btn:focus-visible {
-  outline: 3px solid #defe47;
-  outline-offset: 4px;
-}
-
 /* slide in when the section scrolls into view (only once JS has marked the page) */
 .js .reveal {
   opacity: 0;
@@ -901,7 +877,7 @@ h1 {
 }
 
 .js .about-photo.reveal {
-  transform: translateY(24px) rotate(-3deg);
+  transform: translateY(24px);
 }
 
 .js .reveal.is-visible {
@@ -910,11 +886,11 @@ h1 {
 }
 
 .js .about-photo.reveal.is-visible {
-  transform: rotate(-3deg);
+  transform: none;
 }
 
 .js .about-photo.reveal.is-visible:hover {
-  transform: rotate(0deg) translate(-4px, -4px);
+  transform: translateY(-6px);
 }
 
 .about-copy .reveal:nth-child(2) { transition-delay: 0.05s; }
@@ -990,10 +966,6 @@ h1 {
     font-size: 14px;
   }
 
-  .brutal-btn {
-    font-size: 14px;
-    padding: 11px 18px;
-  }
 }
 
 /*    tech section    */
@@ -1349,14 +1321,14 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
-  max-width: 1200px;
+  gap: 20px;
+  max-width: 1100px;
   margin: 24px auto 0;
 }
 
 .project-card {
-  flex: 0 1 352px;
-  min-width: 280px;
+  flex: 0 1 340px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1375,7 +1347,7 @@ h1 {
 .project-card__visual {
   display: grid;
   place-items: center;
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 2 / 1;
   background: radial-gradient(circle at center, rgba(57, 255, 20, 0.18), transparent 65%), #050505;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -1392,6 +1364,7 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   transition: transform 0.4s ease;
 }
 
@@ -1400,7 +1373,7 @@ h1 {
 }
 
 .project-card__visual i {
-  font-size: 84px;
+  font-size: 64px;
   color: #39ff14;
   filter: drop-shadow(0 0 14px rgba(57, 255, 20, 0.55));
   transition: transform 0.3s ease;
@@ -1414,66 +1387,81 @@ h1 {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 22px 22px 24px;
+  padding: 16px 16px 18px;
   text-align: left;
 }
 
 /* small brutalist label for the throwback project */
 .project-card__badge {
   align-self: flex-start;
-  margin-bottom: 10px;
-  padding: 3px 8px;
+  margin-bottom: 8px;
+  padding: 2px 7px;
   border: 2px solid #000;
   background: #defe47;
   box-shadow: 3px 3px 0 #f8f8f8;
   color: #000;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
 }
 
 .project-card h3 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   color: #fffdff;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 24px;
+  font-size: 19px;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
 }
 
 .project-card p {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   color: rgba(248, 248, 248, 0.8);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.project-card__body > p:not(.project-card__note) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* phones: full-width cards so text wraps less */
+@media (max-width: 600px) {
+  .project-card {
+    flex-basis: 100%;
+  }
 }
 
 .project-card .project-card__note {
-  margin-top: -6px;
-  padding: 10px 12px;
+  margin-top: -4px;
+  padding: 8px 10px;
   border-left: 3px solid #defe47;
   background: rgba(222, 254, 71, 0.06);
   color: #f8f8f8;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .project-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 6px;
+  margin-bottom: 14px;
 }
 
 .project-card__tags li {
-  padding: 4px 10px;
+  padding: 3px 8px;
   border: 1px solid rgba(222, 254, 71, 0.35);
   border-radius: 999px;
   color: #defe47;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .project-card__links {
