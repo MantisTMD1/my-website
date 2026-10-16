@@ -20,12 +20,14 @@ const headerEl = document.getElementById("header");
 
 const closeMenu = () => {
   headerEl.classList.remove("menu-open");
+  document.body.classList.remove("menu-locked");
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.setAttribute("aria-label", "Open menu");
 };
 
 navToggle.addEventListener("click", () => {
   const open = headerEl.classList.toggle("menu-open");
+  document.body.classList.toggle("menu-locked", open);
   navToggle.setAttribute("aria-expanded", String(open));
   navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
 });
