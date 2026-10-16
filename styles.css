@@ -210,6 +210,12 @@ a {
   display: none;
 }
 
+/* menu-only extras: arrows and social links show inside the mobile menu */
+.main-nav .nav-arrow,
+.main-nav .nav-socials {
+  display: none;
+}
+
 @media (max-width: 768px) {
   #header {
     height: 64px;
@@ -259,21 +265,29 @@ a {
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  /* dropdown panel */
+  /* full-screen menu panel with the landing page's CRT scanlines */
   .main-nav {
-    position: absolute;
+    position: fixed;
     top: 64px;
     left: 0;
     right: 0;
+    height: calc(100vh - 64px);
+    height: calc(100svh - 64px);
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
-    padding: 12px 16px 20px;
-    background: rgba(10, 10, 10, 0.95);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    gap: 0;
+    padding: 20px 24px 28px;
+    overflow-y: auto;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0,
+        rgba(0, 0, 0, 0.3) 1px,
+        transparent 1px,
+        transparent 3px
+      ),
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(222, 254, 71, 0.08), transparent 70%),
+      #111310;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -286,20 +300,96 @@ a {
     transform: translateY(0);
   }
 
+  /* links slide in one after another */
+  .main-nav li {
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #header.menu-open .main-nav li {
+    opacity: 1;
+    transform: none;
+  }
+
+  #header.menu-open .main-nav li:nth-child(1) { transition-delay: 0.05s; }
+  #header.menu-open .main-nav li:nth-child(2) { transition-delay: 0.1s; }
+  #header.menu-open .main-nav li:nth-child(3) { transition-delay: 0.15s; }
+  #header.menu-open .main-nav li:nth-child(4) { transition-delay: 0.2s; }
+  #header.menu-open .main-nav li:nth-child(5) { transition-delay: 0.25s; }
+
   .main-nav a {
-    padding: 14px 8px;
-    font-size: 18px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: "Unbounded", "Space Grotesk", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-align: left;
   }
 
   .main-nav a::after {
-    left: 35%;
-    right: 35%;
-    bottom: 8px;
+    display: none;
+  }
+
+  .main-nav .nav-arrow {
+    display: inline-block;
+    color: rgba(248, 248, 248, 0.4);
+    font-size: 20px;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+
+  .main-nav a:hover .nav-arrow,
+  .main-nav a:focus-visible .nav-arrow,
+  .main-nav a.active .nav-arrow {
+    color: #defe47;
+    transform: translateX(6px);
   }
 
   .main-nav #nav_contact {
-    margin: 8px 0 0;
+    justify-content: center;
+    margin: 28px 0 0;
+    padding: 16px;
+    border: none;
+    border-radius: 999px;
+    background: #defe47;
+    color: #111;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 17px;
+    letter-spacing: 0.1rem;
+  }
+
+  .main-nav #nav_contact:hover {
+    background: #e9ff7a;
+  }
+
+  /* social links at the bottom of the menu */
+  .main-nav .nav-socials {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 28px;
+  }
+
+  .main-nav .nav-socials a {
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    color: #defe47;
+    font-size: 20px;
+  }
+
+  .main-nav .nav-socials a:hover {
+    border-color: #defe47;
+    background: rgba(222, 254, 71, 0.08);
   }
 }
 
@@ -531,11 +621,12 @@ a {
 }
 
 h1 {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: bold;
+  font-family: "Unbounded", "Space Grotesk", sans-serif;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(3.5rem, 6.5vw, 6rem);
-  line-height: 0.95em;
+  font-size: clamp(2.6rem, 5.4vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
   margin: 0;
   color: #fffdff;
   text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
@@ -638,7 +729,7 @@ h1 {
 
 @media (max-width: 769px) {
   h1 {
-    font-size: 52px;
+    font-size: 40px;
   }
 
   .title-sub {
@@ -1166,9 +1257,10 @@ h1 {
 }
 
 .glitch {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 4rem;
-  font-weight: bold;
+  font-family: "Unbounded", "Space Grotesk", sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
   color: #fffdff;
   position: relative;
@@ -1179,7 +1271,7 @@ h1 {
 
 @media (max-width: 769px) {
   .glitch {
-    font-size: 36px;
+    font-size: 28px;
   }
 }
 
@@ -1272,8 +1364,10 @@ h1 {
   text-align: center;
 }
 
-/* desktop: keep the cards clear of the fixed social icons on the right edge */
+/* desktop: keep every section's content clear of the fixed social icons on the right edge */
 @media (min-width: 770px) {
+  #about-me__container,
+  #tech-sect__container,
   #projects-sect__container {
     padding-left: 40px;
     padding-right: 112px;
@@ -1745,4 +1839,17 @@ h1 {
     font-size: 24px;
     padding: 0 36px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-nav li,
+  #header.menu-open .main-nav li {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* keep the page behind the open mobile menu from scrolling */
+body.menu-locked {
+  overflow: hidden;
 }
