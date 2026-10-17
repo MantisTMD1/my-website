@@ -1,3 +1,21 @@
+/* self-hosted fonts (variable files, so one file covers every weight) */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("fonts/space-grotesk-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Unbounded is trimmed to capitals, numbers and punctuation: it is only used for uppercase headings */
+@font-face {
+  font-family: "Unbounded";
+  src: url("fonts/unbounded-caps.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1207,14 +1225,14 @@ h1 {
   letter-spacing: 0.03rem;
 }
 
-/* Claude logo (Simple Icons) drawn as a mask so it recolours like the font icons */
-.icon-claude {
+/* tech logos: self-hosted SVGs drawn as masks so they recolour like text on hover */
+.tech-icon {
   display: block;
   width: 1em;
   height: 1em;
   background-color: currentColor;
-  -webkit-mask: url("https://cdn.jsdelivr.net/npm/simple-icons@15.22.0/icons/claude.svg") center / contain no-repeat;
-  mask: url("https://cdn.jsdelivr.net/npm/simple-icons@15.22.0/icons/claude.svg") center / contain no-repeat;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
 }
 
 /* light up in each tool's brand colour */

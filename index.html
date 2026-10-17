@@ -25,20 +25,12 @@
     <meta name="twitter:description" content="Portfolio of Evan St Martin, a software developer based in Minneapolis, MN." />
     <meta name="twitter:image" content="https://evanstmartindevelopment.com/images/og-image.jpg" />
 
-    <!-- fonts: connect early and load only the one family the site uses -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@700;800&display=swap" />
+    <!-- fonts are self-hosted; preload both so the first screen renders in the right type -->
+    <link rel="preload" href="./fonts/unbounded-caps.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <link rel="stylesheet" type="text/css" href="styles.css" />
 
-    <!-- tech icons sit below the fold, so load them without blocking the first paint -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print"
-        onload="this.media='all'" />
-    <noscript>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-    </noscript>
 
     <script src="https://kit.fontawesome.com/6013de8ce9.js" crossorigin="anonymous" defer></script>
 </head>
@@ -109,7 +101,7 @@
     <div id="about-me__container">
         <div class="about-layout">
             <figure class="about-photo reveal">
-                <img src="./images/Image.png" alt="Memoji of Evan peeking over a laptop" width="420" height="420"
+                <img src="./images/memoji.webp" alt="Memoji of Evan peeking over a laptop" width="420" height="420"
                     loading="lazy" />
             </figure>
 
@@ -152,29 +144,29 @@
             <div class="tech-group">
                 <h3>Frontend</h3>
                 <ul class="tech-grid">
-                    <li class="tech-tile" style="--brand: #e34f26"><i class="devicon-html5-plain" aria-hidden="true"></i><span>HTML</span></li>
-                    <li class="tech-tile" style="--brand: #3d8fe0"><i class="devicon-css3-plain" aria-hidden="true"></i><span>CSS</span></li>
-                    <li class="tech-tile" style="--brand: #f7df1e"><i class="devicon-javascript-plain" aria-hidden="true"></i><span>JavaScript</span></li>
-                    <li class="tech-tile" style="--brand: #61dafb"><i class="devicon-react-original" aria-hidden="true"></i><span>React</span></li>
-                    <li class="tech-tile" style="--brand: #9b6ef3"><i class="devicon-bootstrap-plain" aria-hidden="true"></i><span>Bootstrap</span></li>
+                    <li class="tech-tile" style="--brand: #e34f26"><i class="tech-icon" style="--icon: url('images/tech/html5-plain.svg')" aria-hidden="true"></i><span>HTML</span></li>
+                    <li class="tech-tile" style="--brand: #3d8fe0"><i class="tech-icon" style="--icon: url('images/tech/css3-plain.svg')" aria-hidden="true"></i><span>CSS</span></li>
+                    <li class="tech-tile" style="--brand: #f7df1e"><i class="tech-icon" style="--icon: url('images/tech/javascript-plain.svg')" aria-hidden="true"></i><span>JavaScript</span></li>
+                    <li class="tech-tile" style="--brand: #61dafb"><i class="tech-icon" style="--icon: url('images/tech/react-original.svg')" aria-hidden="true"></i><span>React</span></li>
+                    <li class="tech-tile" style="--brand: #9b6ef3"><i class="tech-icon" style="--icon: url('images/tech/bootstrap-plain.svg')" aria-hidden="true"></i><span>Bootstrap</span></li>
                 </ul>
             </div>
             <div class="tech-group">
                 <h3>Backend</h3>
                 <ul class="tech-grid">
-                    <li class="tech-tile" style="--brand: #83cd29"><i class="devicon-nodejs-plain" aria-hidden="true"></i><span>Node.js</span></li>
-                    <li class="tech-tile" style="--brand: #f8f8f8"><i class="devicon-express-original" aria-hidden="true"></i><span>Express</span></li>
+                    <li class="tech-tile" style="--brand: #83cd29"><i class="tech-icon" style="--icon: url('images/tech/nodejs-plain.svg')" aria-hidden="true"></i><span>Node.js</span></li>
+                    <li class="tech-tile" style="--brand: #f8f8f8"><i class="tech-icon" style="--icon: url('images/tech/express-original.svg')" aria-hidden="true"></i><span>Express</span></li>
                     <li class="tech-tile" style="--brand: #4fa3e0"><i class="fa-solid fa-database" aria-hidden="true"></i><span>SQL</span></li>
                 </ul>
             </div>
             <div class="tech-group">
                 <h3>Tools &amp; Hosting</h3>
                 <ul class="tech-grid">
-                    <li class="tech-tile" style="--brand: #8f95ff"><i class="devicon-vitejs-plain" aria-hidden="true"></i><span>Vite</span></li>
-                    <li class="tech-tile" style="--brand: #f05032"><i class="devicon-git-plain" aria-hidden="true"></i><span>Git</span></li>
-                    <li class="tech-tile" style="--brand: #f8f8f8"><i class="devicon-github-original" aria-hidden="true"></i><span>GitHub</span></li>
-                    <li class="tech-tile" style="--brand: #32e6e2"><i class="devicon-netlify-plain" aria-hidden="true"></i><span>Netlify</span></li>
-                    <li class="tech-tile" style="--brand: #d97757"><i class="icon-claude" aria-hidden="true"></i><span>Claude</span></li>
+                    <li class="tech-tile" style="--brand: #8f95ff"><i class="tech-icon" style="--icon: url('images/tech/vitejs-plain.svg')" aria-hidden="true"></i><span>Vite</span></li>
+                    <li class="tech-tile" style="--brand: #f05032"><i class="tech-icon" style="--icon: url('images/tech/git-plain.svg')" aria-hidden="true"></i><span>Git</span></li>
+                    <li class="tech-tile" style="--brand: #f8f8f8"><i class="tech-icon" style="--icon: url('images/tech/github-original.svg')" aria-hidden="true"></i><span>GitHub</span></li>
+                    <li class="tech-tile" style="--brand: #32e6e2"><i class="tech-icon" style="--icon: url('images/tech/netlify-plain.svg')" aria-hidden="true"></i><span>Netlify</span></li>
+                    <li class="tech-tile" style="--brand: #d97757"><i class="tech-icon" style="--icon: url('images/tech/claude.svg')" aria-hidden="true"></i><span>Claude</span></li>
                 </ul>
             </div>
         </div>
@@ -194,7 +186,7 @@
             <article class="project-card">
                 <a class="project-card__visual project-card__visual--image" href="https://vincentvandough.netlify.app/"
                     target="_blank" rel="noopener noreferrer" aria-label="Open the Vincent Van Dough site">
-                    <img src="./images/projects/vincent-van-dough.jpg"
+                    <img src="./images/projects/vincent-van-dough.webp"
                         alt="Vincent Van Dough homepage: bold black Wood-Fired Neapolitan Pizza headline on yellow beside a hand-drawn pizza on teal, with a scrolling list of pizzas"
                         width="720" height="432" loading="lazy" />
                 </a>
@@ -224,7 +216,7 @@
             <article class="project-card">
                 <a class="project-card__visual project-card__visual--image" href="https://mayicardgame.netlify.app/"
                     target="_blank" rel="noopener noreferrer" aria-label="Play May I in your browser">
-                    <img src="./images/projects/may-i.jpg"
+                    <img src="./images/projects/may-i.webp"
                         alt="May I game table: a green felt card table with three computer opponents, the stock and discard piles, and a freebie prompt for the player"
                         width="720" height="432" loading="lazy" />
                 </a>
@@ -256,7 +248,7 @@
                 <a class="project-card__visual project-card__visual--image"
                     href="https://github.com/MantisTMD1/RecipeApp" target="_blank" rel="noopener noreferrer"
                     aria-label="View the Recipe Rescue source code on GitHub">
-                    <img src="./images/projects/recipe-rescue.jpg"
+                    <img src="./images/projects/recipe-rescue.webp"
                         alt="Recipe Rescue app icon next to three iPhone screenshots: Recipe Ideas, Discover and a recipe detail"
                         width="720" height="432" loading="lazy" />
                 </a>
@@ -291,7 +283,7 @@
                 <a class="project-card__visual project-card__visual--image"
                     href="https://lakelifehealthtemp.netlify.app/" target="_blank" rel="noopener noreferrer"
                     aria-label="Open the Lakelife Integrative Health live site">
-                    <img src="./images/projects/lakelife.jpg"
+                    <img src="./images/projects/lakelife.webp"
                         alt="Lakelife Integrative Health homepage: white logo and tagline over a calm lake, with Call us today and Explore services buttons"
                         width="720" height="432" loading="lazy" />
                 </a>
@@ -321,7 +313,7 @@
             <article class="project-card">
                 <a class="project-card__visual project-card__visual--image" href="https://maxwellelliott.github.io/"
                     target="_blank" rel="noopener noreferrer" aria-label="Open the Maxwell Elliott lab site">
-                    <img src="./images/projects/maxwell-elliott.jpg"
+                    <img src="./images/projects/maxwell-elliott.webp"
                         alt="Maxwell Elliott lab site: a framed research question beside a chart of age against calendar year showing the Dunedin Study, UK Biobank and ADNI"
                         width="720" height="432" loading="lazy" />
                 </a>
@@ -379,7 +371,7 @@
             <article class="project-card">
                 <a class="project-card__visual project-card__visual--image" href="https://evanstmartin.netlify.app/"
                     target="_blank" rel="noopener noreferrer" aria-label="Open my first portfolio live site">
-                    <img src="./images/projects/react-portfolio.jpg"
+                    <img src="./images/projects/react-portfolio.webp"
                         alt="My first portfolio: a WebDevEv logo, a dark hero with connected particles and an Express JS typing animation over a photo of a laptop"
                         width="720" height="432" loading="lazy" />
                 </a>
@@ -452,7 +444,6 @@
             </form>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
     <script src="index.js"></script>
 </body>
 
