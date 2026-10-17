@@ -50,6 +50,7 @@ const openModal = (event) => {
   event.preventDefault();
   closeMenu();
   modal_container.classList.add("show");
+  loadEmailJS().catch(() => {}); // warm up the form's email library; errors surface on submit
 };
 
 // buttons that open the contact form with a message already written
@@ -105,14 +106,34 @@ const setStatus = (message, type) => {
   formStatus.className = `form-status ${type || ""}`;
 };
 
-if (window.emailjs && EMAILJS_PUBLIC_KEY) {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
+// EmailJS is only downloaded once someone opens the contact form (or submits it), not on page load
+const EMAILJS_SDK = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js";
+let emailjsReady;
+
+const loadEmailJS = () => {
+  if (!emailjsReady) {
+    emailjsReady = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = EMAILJS_SDK;
+      script.async = true;
+      script.onload = () => {
+        window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        resolve(window.emailjs);
+      };
+      script.onerror = () => {
+        emailjsReady = null; // let a later attempt try again
+        reject(new Error("EmailJS failed to load"));
+      };
+      document.head.appendChild(script);
+    });
+  }
+  return emailjsReady;
+};
 
 contactForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  if (!window.emailjs || !EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+  if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
     setStatus("Sorry, the form isn't working right now. Please email me directly instead.", "error");
     return;
   }
@@ -121,8 +142,8 @@ contactForm.addEventListener("submit", (event) => {
   submitButton.value = "Sending...";
   setStatus("", "");
 
-  emailjs
-    .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
+  loadEmailJS()
+    .then((emailjs) => emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm))
     .then(() => {
       contactForm.reset();
       setStatus("Thanks for reaching out! I'll get back to you soon.", "success");
