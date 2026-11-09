@@ -42,7 +42,6 @@ document.addEventListener("keydown", (event) => {
 });
 
 // modal function
-const contact_button = document.getElementById("contact_button");
 const close = document.getElementById("close");
 const modal_container = document.getElementById("modal_container");
 
@@ -57,6 +56,8 @@ const openModal = (event) => {
 const contactPrefills = {
   "beta-tester":
     "Hi Evan, I'd like to beta test Recipe Rescue on iPhone. Please send a TestFlight invite to the email above.",
+  "business-quote":
+    "Hi Evan, I'm interested in a website for my business. Here's a bit about what we do and what we need:",
 };
 
 // if the form is closed without editing a pre-written message, clear it so the next open starts fresh
@@ -74,10 +75,10 @@ document.querySelectorAll("[data-contact-prefill]").forEach((button) => {
   });
 });
 
-contact_button.addEventListener("click", openModal);
-document.getElementById("nav_contact").addEventListener("click", openModal);
-document.getElementById("hero_contact").addEventListener("click", openModal);
-document.getElementById("about_contact").addEventListener("click", openModal);
+// not every page has every contact button
+["contact_button", "nav_contact", "hero_contact", "about_contact"].forEach((id) =>
+  document.getElementById(id)?.addEventListener("click", openModal)
+);
 
 close.addEventListener("click", () => {
   modal_container.classList.remove("show");
